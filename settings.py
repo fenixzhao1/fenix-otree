@@ -1,4 +1,7 @@
+import os
 from os import environ
+
+import otree.settings
 
 SESSION_CONFIGS = [
     dict(
@@ -88,10 +91,12 @@ ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
-DEMO_PAGE_INTRO_HTML = """ """
+DEMO_PAGE_INTRO_HTML = """
+Fenix Shuchen Zhao oTree Homepage
+"""
 
 SECRET_KEY = '6629196293936'
 
-INSTALLED_APPS = ['otree']
+INSTALLED_APPS = ['otree', 'django_extensions']
 
 EXTENSION_APPS = ['otree_redwood', 'otree_markets']
