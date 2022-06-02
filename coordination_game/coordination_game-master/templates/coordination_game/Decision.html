@@ -1,0 +1,51 @@
+{% extends "otree_redwood/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Your Choice
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'bimatrix/highcharts.js' %}"></script>
+
+    <script type="module" src="{% static 'bimatrix/leeps-bimatrix/leeps-bimatrix.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    {% with config=subsession.config %}
+        <p>You are now playing Game {{ subsession.round_number }}</p>
+        <leeps-bimatrix
+            initial-decision='{{ player.initial_decision }}'
+            payoff-matrix='{{ config.payoff_matrix }}'
+            period-length='{{ config.period_length }}'
+            rate-limit='{{ config.rate_limit }}'
+            {% if config.mean_matching %}
+            mean-matching
+            {% endif %}
+            {% if config.num_subperiods %}
+            num-subperiods='{{ config.num_subperiods }}'
+            {% endif %}
+            {% if config.pure_strategy %}
+            pure-strategy
+            {% endif %}
+            {% if config.show_at_worst %}
+            show-at-worst
+            {% endif %}
+            {% if config.show_best_response %}
+            show-best-response
+            {% endif %}
+            {% if config.signal_exist %}
+            signal-exist
+            {% endif %}
+            signal-freq='{{ config.signal_freq }}'
+            {% if config.signaltwo_exist %}
+            signaltwo-exist
+            {% endif %}
+            signaltwo-freq='{{ config.signaltwo_freq }}'
+            {% if config.signalthree_exist %}
+            signalthree-exist
+            {% endif %}
+        ></leeps-bimatrix>
+    {% endwith %}
+
+{% endblock %}

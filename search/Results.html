@@ -1,0 +1,117 @@
+{% extends "global/Page.html" %}
+
+{% block styles %}
+    <link href="{% static 'search/css/custom.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    Results - Search
+{% endblock %}
+
+{% block content %}
+<p>
+    This is <b>round {{player.round_number}}</b>. 
+</p>
+
+{% if automatic == True && control == True %}
+<p>
+    The reservation value you entered is <b> {{ player.res_value }} </b> points.
+</p>
+{% elif automatic == True && control == False %}
+<p>
+    The reservation probability you entered is <b> {{ player.res_prob }} </b>.
+</p>
+{% endif %}
+
+{% if automatic == True && control == True %}
+    <div class="wrapper">
+    <div class="card">
+    <table id='history' class='table'>
+        <thead>
+            <tr class="header">
+                <th class="search_no"> Search No. </th>
+                <th class="probability"> Points You Will Get </th>
+            </tr>
+            {% for key, value in display.items %}
+                <tr>
+                    <th class="search_no"> {{ key }} </th>                   
+                    <th class="probability"> {{ value }} </th>
+                </tr>
+            {% endfor %}
+        </thead>
+    </table>
+    </div>
+    </div>
+
+{% elif automatic == True && control == False %}
+<div class="wrapper">
+    <div class="card">
+    <table id='history' class='table'>
+        <thead>
+            <tr class="header">
+                <th class="search_no"> Search No. </th>
+                <th class="probability"> Probability of Getting {{ value_high }} points</th>
+                <th class="probability"> Probability of Getting {{ value_low }} points</th>
+            </tr>
+            {% for key, value in display.items %}
+                {% for k, v in value.items %}
+                <tr>
+                    <th class="search_no"> {{ key }} </th>      
+                    <th class="probability"> {{ k }} </th>
+                    <th class="probability"> {{ v }} </th>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </thead>
+    </table>
+    </div>
+    </div>
+
+{% endif %}
+
+{% if automatic == True %}
+<p>
+    The total number of searches in this round is <b>{{player.number_of_search}}</b>. 
+</p>
+{% else %}
+<p>
+    The total number of searches you made in this round is <b>{{player.number_of_search}}</b>.
+</p>
+{% endif %}
+
+{% if control == True %}
+    <p>
+        Your payoff from round {{ player.round_number }} is <math> {{ player.control_value }} points - {{ player.number_of_search }} &times; 
+            {{ search_cost }} points = </math> <b>{{ player.payoff }}</b>. 
+    </p>
+{% else %}
+    {% if certainty == True %}
+        <p>
+            Your payoff from round {{player.round_number}} is <math> {{ value_high }} points &times; {{ player.probability }} 
+                + {{ value_low }} points &times; (1 - {{ player.probability }}) - {{ player.number_of_search }} &times; 
+                {{ search_cost }} points = </math> <b>{{ player.payoff }}</b>. 
+        </p>
+    {% else %} 
+        {% if player.probability >= player.threshold %}
+            <p>
+                The random outcome of the item you purchase is {{ value_high }} points. 
+            </p>
+            <p>
+                Your payoff from round {{ player.round_number }} is <math> {{ value_high }} points - {{ player.number_of_search }} &times; 
+                    {{ search_cost }} points = </math> <b>{{ player.payoff }}</b>. 
+            </p>
+        {% else %}
+            <p>
+                The random outcome of the item you purchase is {{ value_low }} points. 
+            </p>
+            <p>
+                Your payoff from round {{ player.round_number }} is <math> {{ value_low }} points - {{ player.number_of_search }} &times; 
+                    {{ search_cost }} points = </math> <b>{{ player.payoff }}</b>. 
+            </p>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+{% next_button %}
+
+{% endblock %}

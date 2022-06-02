@@ -1,0 +1,86 @@
+{% extends "global/Page.html" %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Your first name is {{player.first_name}}. 
+</p>
+
+<p>
+    Your last name is {{player.last_name}}. 
+</p>
+
+<p>
+    Your UCSC student ID is {{player.ucscID}}.
+</p>
+
+<p>
+    Your UCSC email is {{player.email}}. 
+</p>
+
+<p>
+    Your age is {{player.age}}.
+</p>
+
+<p>
+    Your gender is {{player.gender}}. 
+</p>
+
+<p>
+    Your ethnic group is {{player.ethnicity}}. 
+</p>
+
+<p>
+    Your participant ID is {{player.participantID}}. 
+</p>
+
+<p>
+    Your Venmo ID is {{player.venmoID}}. 
+</p>
+
+<p>
+    How did you make your decision in the Search task? 
+</p>
+
+<p>
+    {{player.searchcomment}}
+</p>
+
+<p>
+    How did you make your decision in the BRET task? 
+</p>
+
+<p>
+    {{player.bretcomment}} 
+</p>
+
+<p>
+    How did you make your decision in the MPL task? 
+</p>
+
+<p>
+    {{player.mplcomment}} 
+</p>
+
+<p>
+    Suggestions  
+</p>
+
+<p>
+    {{player.suggest}} 
+</p>
+
+<p>
+    <b>Thank you for your participation in this experiment!</b>
+</p>
+
+<p>
+    <b>This is the end of the experiment. If you have any questions, please let the experimenter know. </b>
+</p>
+<!-- {% next_button %} -->
+
+{% endblock %}

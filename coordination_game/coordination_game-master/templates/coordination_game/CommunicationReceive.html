@@ -1,0 +1,29 @@
+{% extends "otree_redwood/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Message Summary
+{% endblock %}
+
+
+{% block content %}
+
+    <table class="table" style="margin-top:20px; margin-bottom:10px">
+        <caption style="color:black;font-size:40px;caption-side:top;text-align: center;">Messages</caption>
+        <th>
+            <td>Participant</td>
+            <td>Messages</td>
+        </th>
+        {% for message in messages %}
+            <tr>
+                <td></td>
+                <td>{{ message.player }}</td>
+                <td>{{ message.message }}</td>
+            </tr>
+        {% endfor %}
+                
+    </table>
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Welcome to LEEPS Online Laboratory!
+{% endblock %}
+
+{% block content %}
+<p>
+Thank you for participating in this interactive decision-making experiment.
+    To start the experiment, please press next. The experiment starts when everyone is ready.
+</p>
+
+    {% next_button %}
+
+{% endblock %}

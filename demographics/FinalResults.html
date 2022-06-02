@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+
+{% block title %}
+    Final Results
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Your total payoff from the search task and two other tasks is {{ search_pay }} + {{ bomb_pay }} + {{ mpl_pay }} = {{ total_pay }}. 
+</p>
+
+<p>
+    Please press <b>Next</b> to complete the survey. 
+</p>
+
+
+{% next_button %}
+
+{% endblock %}

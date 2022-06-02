@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    <table class="table" style="width:600px; margin-top:20px; margin-bottom:10px">
+        <th>
+            <td>Up(Left)</td>
+            <td>Bottom(Right)</td>
+            <td>All</td>
+            <td>Payoff in this Game</td>
+        </th>
+        <tr>
+            <td>You</td>
+            <td>{{ freq_top | floatformat:2 }}</td>
+            <td>{{ freq_bottom | floatformat:2 }}</td>
+            <td>{{ 1.00 | floatformat:2 }}</td>
+            <td>{{ player.payoff }}</td>
+        </tr>
+        <tr>
+            <td>Counterparty</td>
+            <td>{{ counter_freq_top | floatformat:2 }}</td>
+            <td>{{ counter_freq_bottom | floatformat:2 }}</td>
+            <td>{{ 1.00 | floatformat:2 }}</td>
+            <td>{{ counter_average_payoff }}</td>
+        </tr>
+    </table>
+
+    {% next_button %}
+
+{% endblock %}

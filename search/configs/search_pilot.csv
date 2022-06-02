@@ -1,0 +1,7 @@
+session,endowment,value_high,value_low,search_cost,certainty,random
+1,100,100,10,5,TRUE,TRUE
+2,100,50,10,5,TRUE,TRUE
+3,100,100,10,10,TRUE,TRUE
+1,100,100,10,5,FALSE,TRUE
+2,100,50,10,5,FALSE,TRUE
+3,100,100,10,10,FALSE,TRUE

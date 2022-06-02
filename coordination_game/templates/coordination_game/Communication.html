@@ -1,0 +1,69 @@
+{% extends "otree_redwood/Page.html" %}
+{% load staticfiles otree_tags %}
+{% block scripts %}
+    <script src="{% static 'bimatrix/highcharts.js' %}"></script>
+
+    <script type="module" src="{% static 'bimatrix/display-matrix/display-matrix.js' %}"></script>
+{% endblock %}
+{% block title %}
+    Communication Stage
+{% endblock %}
+
+{% block content %}
+    {% with config=subsession.config %}
+        <p>You are now playing Game {{ subsession.round_number }}</p>
+        <leeps-bimatrix
+            payoff-matrix='{{ config.payoff_matrix }}'
+            period-length='{{ config.period_length }}'
+            rate-limit='{{ config.rate_limit }}'
+            {% if config.mean_matching %}
+            mean-matching
+            {% endif %}
+            {% if config.num_subperiods %}
+            num-subperiods='{{ config.num_subperiods }}'
+            {% endif %}
+            {% if config.pure_strategy %}
+            pure-strategy
+            {% endif %}
+            {% if config.show_at_worst %}
+            show-at-worst
+            {% endif %}
+            {% if config.show_best_response %}
+            show-best-response
+            {% endif %}
+        ></leeps-bimatrix>
+    {% endwith %}
+
+    {% if realtime %}
+        {% with config=subsession.config %}
+            <p> In this game, you will interact with your counterpart in real time for {{config.period_length}} seconds.</p>
+        {% endwith %}
+
+        <p>
+        Before the game starts, you can chat with your counterpart. Please follow two rules: <br>
+        1) Discrimination and malicious messages are NOT allowed. <br>
+        2) Do NOT directly or indirectly disclose your identity. <br>
+        Note that your counterpart's payoff matrix is a transpose of yours. Using the payoff to communicate is better than using up/down/left/right.
+        </p>
+
+        {% chat nickname="Participant" channel=channel %}
+
+    {% elif not realtime %}
+        {% with config=subsession.config %}
+            <p>  In this game, you will interact with your counterpart repeatedly for {{config.num_subperiods}} periods,
+                 with {{ secs_per_per  }} seconds for each period.</p>
+        {% endwith %}
+
+        <p>
+        Before the game starts, you can send a message to your counterpart. Please follow two rules: <br>
+        1) Discrimination and malicious messages are NOT allowed. <br>
+        2) Do NOT directly or indirectly disclose your identity. <br>
+        Note that your counterpart's payoff matrix is a transpose of yours. Using the payoff to communicate is better than using up/down/left/right.
+        </p>
+        
+        {% formfields %}
+
+        {% next_button %}
+
+    {% endif %}
+{% endblock %}

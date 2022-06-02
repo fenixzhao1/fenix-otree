@@ -1,0 +1,6 @@
+round,shuffle_role,period_length,num_subperiods,pure_strategy,show_at_worst,show_best_response,rate_limit,mean_matching,payoff1Aa,payoff1Ab,payoff1Ba,payoff1Bb,payoff2Aa,payoff2Ab,payoff2Ba,payoff2Bb,communication,signal_exist,signal_freq,signaltwo_exist,signaltwo_freq,signalthree_exist
+1,TRUE,120,0,TRUE,FALSE,FALSE,0,FALSE,400,0,0,160,160,0,0,400,0,TRUE,10,TRUE,10,TRUE
+2,TRUE,120,0,TRUE,FALSE,FALSE,0,FALSE,400,0,0,160,160,0,0,400,0,FALSE,10,TRUE,10,TRUE
+3,TRUE,120,0,TRUE,FALSE,FALSE,0,FALSE,400,0,0,160,160,0,0,400,0,TRUE,10,TRUE,10,TRUE
+4,TRUE,120,0,TRUE,FALSE,FALSE,0,FALSE,400,0,0,160,160,0,0,400,0,FALSE,10,FALSE,10,TRUE
+

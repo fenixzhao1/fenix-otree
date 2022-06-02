@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+
+{% block styles %}
+    <link href="{% static 'search/css/custom.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    Reservation Probability
+{% endblock %}
+
+{% block content %}
+<p>
+    This is <b>round {{player.round_number}}</b>. 
+</p>
+<p>
+    {% if control == False %}
+        The two possible outcomes for each item are: {{ value_high }} points and {{ value_low }} points. 
+    {% else %}
+        The outcome for each item is an integer between {{ value_low }} points and {{ value_high }} points (inclusive, the outcomes are chosen with equal possibilities).
+    {% endif %}
+</p>
+
+<p>
+
+    Please enter your reservation probability (i.e. the lowest possible probability of getting {{ value_high }} points for an item 
+    you would like to purchase) below. 
+    <p>
+        {{ formfield "res_prob" }}
+    </p>
+</p>
+
+Please press Next if you have made your decision. 
+<p>
+    {% next_button %}
+</p>
+
+{% endblock %}

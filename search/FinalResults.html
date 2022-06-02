@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+
+{% block title %}
+    Results - Search Task 
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Congratulations, You have completed the search task! 
+</p>
+
+<p>
+    The randomly chosen round for your payoff is <b>round {{ paying_round }}</b>. 
+</p>
+
+<p>
+    Your total payoff from the search task is <b>{{ random_payoff }}</b>. 
+</p>
+
+<p>
+    Please press <b>Next</b> so that you will be directed to the next two tasks. 
+</p>
+
+{% next_button %}
+
+{% endblock %}
